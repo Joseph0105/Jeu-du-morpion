@@ -3,20 +3,15 @@
     <h1>Le <span>MORPION</span></h1>
 
     <table>
-      <tr>
-        <td class="0" data-cell-index="0" @click="cellClicked"></td>
-        <td class="1" data-cell-index="1" @click="cellClicked"></td>
-        <td class="2" data-cell-index="2" @click="cellClicked"></td>
-      </tr>
-      <tr>
-        <td class="3" data-cell-index="3" @click="cellClicked"></td>
-        <td class="4" data-cell-index="4" @click="cellClicked"></td>
-        <td class="5" data-cell-index="5" @click="cellClicked"></td>
-      </tr>
-      <tr>
-        <td class="6" data-cell-index="6" @click="cellClicked"></td>
-        <td class="7" data-cell-index="7" @click="cellClicked"></td>
-        <td class="8" data-cell-index="8" @click="cellClicked"></td>
+      <tr v-for="(row, rowIndex) in 3" :key="'row-' + rowIndex">
+        <td
+          v-for="(col, colIndex) in 3"
+          :class="cellClasses[`${rowIndex * 3 + colIndex}`]"
+          @click="cellClicked(rowIndex * 3 + colIndex)"
+          :key="'cell-' + (rowIndex * 3 + colIndex)"
+        >
+          {{ currentGame[rowIndex * 3 + colIndex] }}
+        </td>
       </tr>
     </table>
 
@@ -30,7 +25,7 @@ export default {
   name: 'PageJeu',
   data() {
     return {
-      currentGame: ['', '', '', '', '', '', '', '', ''],
+      currentGame: Array(9).fill(''),
       winningCombinations: [
         [0, 1, 2],
         [3, 4, 5],
@@ -49,40 +44,24 @@ export default {
     };
   },
   methods: {
-    cellClicked(event) {
-      const resetBtn = document.querySelector('.reset');
-      const cellIndex = event.target.getAttribute('data-cell-index');
-      const cellContent = this.currentGame[cellIndex];
-      if (cellContent === '') {
+    cellClicked(cellIndex) {
+      if (this.currentGame[cellIndex] === '' && !this.gameOver) {
         this.currentGame[cellIndex] = this.currentPlayer;
-        event.target.textContent = this.currentPlayer;
-        if (this.currentPlayer === 'X') {
-          event.target.style.color = 'crimson';
-        } else {
-          event.target.style.color = 'green';
-        }
         const winner = this.checkWinner();
         if (winner !== null) {
           this.consigne = `Le joueur ${winner} a gagné`;
-          if (resetBtn) {
-            resetBtn.style.display = 'block';
-          }
           this.gameOver = true;
         } else if (!this.currentGame.includes('')) {
           this.consigne = 'Match nul !';
-          if (resetBtn) {
-            resetBtn.style.display = 'block';
-          }
           this.gameOver = true;
-        }
-
-        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
-        this.player = this.currentPlayer;
-        if (!this.gameOver) {
+        } else {
+          this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+          this.player = this.currentPlayer;
           this.consigne = `Au tour de ${this.currentPlayer}`;
         }
       }
     },
+
     checkWinner() {
       let winner = null;
       this.winningCombinations.forEach((combination) => {
@@ -98,24 +77,16 @@ export default {
       return winner;
     },
     resetGame() {
-      const cells = document.querySelectorAll('td');
-      this.currentGame = ['', '', '', '', '', '', '', '', ''];
-
-      cells.forEach((cell) => {
-        cell.textContent = '';
-        cell.style.color = '';
-      });
-
+      this.currentGame.fill('');
       this.gameOver = false;
-      this.player.textContent = this.currentPlayer;
-      this.consigne.textContent = `Au tour de ${this.player.textContent}`;
-      this.resetBtn.style.display = 'none';
+      this.player = this.currentPlayer;
+      this.consigne = `Au tour de ${this.player}`;
     },
   },
-  mounted() {
-    this.resetBtn = this.$el.querySelector('.reset');
-    this.player = this.$el.querySelector('.player');
-    this.consigne = this.$el.querySelector('.consigne');
+  computed: {
+    cellClasses() {
+      return this.currentGame.map((value) => (value !== '' ? value : ''));
+    },
   },
 };
 </script>
