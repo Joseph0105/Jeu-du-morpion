@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-link v-if="$route.name !== 'homePage'" to="/">Accueil</router-link>
+    <router-link class="acceuil" v-if="$route.name !== 'homePage'" to="/"
+      >Accueil</router-link
+    >
     <component v-if="$route.name === 'homePage'" :is="'homePage'"></component>
     <component
       v-if="$route.name === 'unContreUn'"
@@ -37,7 +39,13 @@ body {
 #app {
   font-family: $font-family;
   background: $gradient-color;
-
   padding: clamp(10px, 5vw, 10px) 10px 10px;
+  .acceuil {
+    background-color: $secondary-color;
+    border: 1px solid $white-color;
+    color: $white-color;
+
+    padding: 1rem;
+  }
 }
 </style>

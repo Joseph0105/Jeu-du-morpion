@@ -6,11 +6,11 @@
   padding: 0;
 }
 
+@import '../scss/variables.scss';
+@import '../scss/mixins.scss';
+
 body {
-  font-family: Roboto, Helvetica, sans-serif;
-  background: linear-gradient(to right, #283048, #859398);
-  color: #f1f1f1;
-  padding: clamp(20px, 5vw, 50px) 10px 10px;
+  padding: clamp(20px, 5vw, 20px) 10px 10px;
 }
 .global-container {
   display: flex;
@@ -19,12 +19,10 @@ body {
   justify-content: center;
   margin: auto;
   width: 80%;
+  height: 100vh;
   h1 {
-    margin: 10px;
-    font-weight: 2;
-    span {
-      font-weight: bolder;
-    }
+    @include h1;
+    font-size: 4rem;
   }
 
   td {
@@ -42,13 +40,14 @@ body {
     }
   }
   table {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     margin: 10px;
     border-collapse: collapse;
     cursor: pointer;
   }
   .consigne {
+    color: $white-color;
     padding: 10px;
     font-size: 20px;
   }
@@ -56,9 +55,9 @@ body {
   .reset {
     padding: 5px;
     width: 20%;
-    border: 2px solid #283048;
-    background-color: #f1f1f1;
-    color: #283048;
+    border: 1px solid $white-color;
+    background-color: $secondary-color;
+    color: $white-color;
     cursor: pointer;
   }
 }

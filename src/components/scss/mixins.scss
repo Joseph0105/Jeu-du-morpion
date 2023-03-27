@@ -1,0 +1,13 @@
+@mixin h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  color: $white-color;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+
+  span {
+    color: $secondary-color;
+  }
+}

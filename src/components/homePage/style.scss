@@ -1,4 +1,5 @@
 @import '../scss/variables.scss';
+@import '../scss/mixins.scss';
 .home-container {
   display: flex;
   flex-direction: column;
@@ -8,17 +9,7 @@
   background-image: $gradient-color;
 
   h1 {
-    font-size: 5rem;
-    font-weight: 700;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 3rem;
-
-    span {
-      color: $secondary-color;
-    }
+    @include h1;
   }
 
   h2 {
