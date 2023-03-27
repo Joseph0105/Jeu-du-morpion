@@ -1,25 +1,32 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <home-page></home-page>
-    <un-contre-un></un-contre-un>
+    <router-link v-if="$route.name !== 'homePage'" to="/">Accueil</router-link>
+    <component v-if="$route.name === 'homePage'" :is="'homePage'"></component>
+    <component
+      v-if="$route.name === 'unContreUn'"
+      :is="'unContreUn'"
+    ></component>
+    <router-view :name="$route.name"></router-view>
   </div>
 </template>
 
 <script>
 import homePage from './components/homePage/homePage.vue';
 import unContreUn from './components/unContreUn/unContreUn.vue';
-
 export default {
   name: 'App',
   components: {
-    unContreUn,
     homePage,
+    unContreUn,
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '../src/components/scss/variables.scss';
+body {
+  padding: 0;
+}
 *,
 ::before,
 ::after {
@@ -28,9 +35,9 @@ export default {
   padding: 0;
 }
 #app {
-  font-family: Roboto, Helvetica, sans-serif;
-  background: linear-gradient(to right, #283048, #859398);
-  color: #f1f1f1;
-  padding: clamp(20px, 5vw, 50px) 10px 10px;
+  font-family: $font-family;
+  background: $gradient-color;
+
+  padding: clamp(10px, 5vw, 10px) 10px 10px;
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
-  <div class="global-container">
-    <h1>Choisissez votre mode de jeu</h1>
-    <router-link to="/un-contre-un">Jouer 1 contre 1</router-link>
-    <router-link to="/vs-computer">Jouer contre l'ordinateur</router-link
-    >button>
+  <div class="home-container">
+    <h1>Le <span>MORPION</span></h1>
+    <h2>Choisis ton mode de jeu :</h2>
+    <router-link to="/game">1 VS 1</router-link>
+    <router-link to="/vs-computer"
+      >Contre l'intelligence artificielle</router-link
+    >
   </div>
 </template>
 
@@ -28,4 +30,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import './style.scss';
+</style>
