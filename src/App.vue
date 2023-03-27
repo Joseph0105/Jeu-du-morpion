@@ -1,16 +1,20 @@
 <template>
   <div id="app">
+    <router-view></router-view>
+    <home-page></home-page>
     <un-contre-un></un-contre-un>
   </div>
 </template>
 
 <script>
+import homePage from './components/homePage/homePage.vue';
 import unContreUn from './components/unContreUn/unContreUn.vue';
 
 export default {
   name: 'App',
   components: {
     unContreUn,
+    homePage,
   },
 };
 </script>

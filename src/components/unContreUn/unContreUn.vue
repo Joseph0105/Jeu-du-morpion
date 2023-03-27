@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'PageJeu',
+  name: 'unContreUn',
   data() {
     return {
       currentGame: Array(9).fill(''),
