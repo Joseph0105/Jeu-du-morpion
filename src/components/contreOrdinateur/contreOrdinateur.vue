@@ -21,8 +21,10 @@
 </template>
 
 <script>
+import Ai from '../js/ai.js';
+
 export default {
-  name: 'unContreUn',
+  name: 'contreOrdinateur',
   data() {
     return {
       currentGame: Array(9).fill(''),
@@ -41,23 +43,44 @@ export default {
       consigne: 'Au tour de X',
       gameOver: false,
       resetBtn: null,
+      isComputerPlaying: false,
     };
   },
   methods: {
+    computerMove() {
+      this.isComputerPlaying = true;
+      setTimeout(() => {
+        const move = Ai.getBestMove(this.currentGame);
+        this.currentGame[move] = this.currentPlayer;
+        this.checkGameState();
+        this.isComputerPlaying = false;
+      }, 500);
+    },
+    checkGameState() {
+      const winner = this.checkWinner();
+      if (winner !== null) {
+        this.consigne = `Le joueur ${winner} a gagné`;
+        this.gameOver = true;
+      } else if (!this.currentGame.includes('')) {
+        this.consigne = 'Match nul !';
+        this.gameOver = true;
+      } else {
+        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+        this.player = this.currentPlayer;
+        this.consigne = `Au tour de ${this.currentPlayer}`;
+      }
+    },
     cellClicked(cellIndex) {
-      if (this.currentGame[cellIndex] === '' && !this.gameOver) {
+      if (
+        this.currentGame[cellIndex] === '' &&
+        !this.gameOver &&
+        !this.isComputerPlaying
+      ) {
         this.currentGame[cellIndex] = this.currentPlayer;
-        const winner = this.checkWinner();
-        if (winner !== null) {
-          this.consigne = `Le joueur ${winner} a gagné`;
-          this.gameOver = true;
-        } else if (!this.currentGame.includes('')) {
-          this.consigne = 'Match nul !';
-          this.gameOver = true;
-        } else {
-          this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
-          this.player = this.currentPlayer;
-          this.consigne = `Au tour de ${this.currentPlayer}`;
+        this.checkGameState();
+
+        if (!this.gameOver) {
+          this.computerMove();
         }
       }
     },
@@ -93,4 +116,7 @@ export default {
 
 <style lang="scss">
 @import '../scss/style.scss';
+body {
+  padding: 0;
+}
 </style>
