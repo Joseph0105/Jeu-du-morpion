@@ -13,3 +13,4 @@ Mettez-vous au défi en affrontant notre intelligence artificielle. Ne vous y tr
 Alors n'attendez plus, plongez dans l'univers du morpion et découvrez si vous avez ce qu'il faut pour devenir un champion incontesté.
 
 Attention : nous ne sommes pas responsables des rivalités créées ou intensifiées par ce jeu. Jouez avec sagesse !
+
