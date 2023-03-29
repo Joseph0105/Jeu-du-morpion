@@ -4,9 +4,11 @@ Bienvenue dans mon tout premier projet réalisé avec Vue.js, où j'ai pu mettre
 
 Ce jeu offre deux modes de jeu pour satisfaire tous les goûts :
 
-##Mode 1v1 : Affrontez vos amis, votre famille ou même vos ennemis jurés dans un duel épique et sans pitié !
+##Mode 1v1 :
+Affrontez vos amis, votre famille ou même vos ennemis jurés dans un duel épique et sans pitié !
 
-##Mode contre l'ordinateur : Mettez-vous au défi en affrontant notre intelligence artificielle. Ne vous y trompez pas, notre IA est encore assez basique, mais elle n'hésitera pas à saisir toutes les occasions la victoire ! (mode idéal pour les mauvais perdants)
+##Mode contre l'ordinateur : 
+Mettez-vous au défi en affrontant notre intelligence artificielle. Ne vous y trompez pas, notre IA est encore assez basique, mais elle n'hésitera pas à saisir toutes les occasions la victoire ! (mode idéal pour les mauvais perdants)
 
 Alors n'attendez plus, plongez dans l'univers du morpion et découvrez si vous avez ce qu'il faut pour devenir un champion incontesté.
 
