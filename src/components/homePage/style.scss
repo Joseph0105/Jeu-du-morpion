@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: $gradient-color;
+
+  padding: 0;
 
   h1 {
     @include h1;

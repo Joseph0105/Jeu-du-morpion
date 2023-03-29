@@ -71,6 +71,7 @@ body {
   padding: 0;
 }
 #app {
+  padding: 0;
   font-family: $font-family;
   background: $gradient-color;
   padding: clamp(10px, 5vw, 10px) 10px 10px;
